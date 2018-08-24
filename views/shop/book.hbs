@@ -1,1 +1,28 @@
+<div class="row">
+	<div class="col-md-3">
+        <a href="/" style="text-decoration: none">< Back to Store</a>
+        <p/><p/>
+    </div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+        <img src="/img/{{ book.image }}" alt="..." class="img-responsive"> 
+    </div>
+	<div class="col-md-4">
+		<strong>{{book.title}}</strong>
+		<p/>
+		 by {{book.author}}
+		 <p/>${{book.price}} | {{book.publishDate}}
+		 <br/>&nbsp;<br/>&nbsp;
+		 <p/>{{book.shortDescription}}
+		 <p/>&nbsp;<p/>&nbsp
+		  <a href="/add-to-cart/{{book.id}}" class="btn btn-success pull-right" role="button">Add Cart</a>
+	</div>
+</div>
+<div class="row">
 
+	<div class="col-sm-12">
+	<p/>&nbsp;<p/>
+	 {{book.description}}
+	</div>
+</div>
