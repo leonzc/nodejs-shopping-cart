@@ -1,1 +1,120 @@
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+        <a href="/" style="text-decoration: none">< Back to Store</a>
+        <p/><p/>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h3>My Profile</h3>
+        <br>
+		{{#if hasErrors}}
+            <div class="alert alert-danger">
+                {{# each messages }}
+                    <p>{{this}}</p>
+                {{/each}}
+            </div>
+        {{/if}}
+        <div class="panel panel-default">
+            <div class="panel-body">
 
+                <form class="form-horizontal form" action="/user/profile" method="POST">
+
+                    {{#if user}}
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Name </label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="name" name="name" readonly placeholder="" value="{{ this.user.firstName }} {{ this.user.lastName }}">
+                        </div>
+                    </div>
+
+ 					<div class="form-group">
+                        <label class="control-label col-sm-2" for="email">E-mail </label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="email" name="email" readonly placeholder="" value="{{ this.user.email }}">
+                        </div>
+                    </div>
+                    
+                     <div class="form-group">
+                        <label class="control-label col-sm-2" for="password">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" id="password" name="password" class="form-control" value="{{this.user.password}}">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="street">Phone</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="" value="{{this.user.phone}}">
+                        </div>
+                    </div>
+                    
+                     <div class="form-group">
+                        <label class="control-label col-sm-2" for="street">Street</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="street" name="street" placeholder="" value="{{this.user.street}}">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="city">City</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="city" name="city" placeholder="" value="{{this.user.city}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="province">Province</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="province" name="province" placeholder="" value="{{this.user.province}}">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="country">Country</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="country" name="country" placeholder="" value="{{this.user.country}}">
+                        </div>
+                    </div>
+
+					<div class="form-group">
+                        <label class="control-label col-sm-2" for="zipcode">Postal Code</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="" value="{{this.user.zipcode}}">
+                        </div>
+                    </div>
+                   
+                    
+                    <button type="submit" class="btn btn-success">Submit Update</button>
+
+                    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                    {{/if}}
+                </form>
+            </div>
+    
+        </div>
+
+        {{# each orders }}
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+                    <strong>Order Time: {{this.orderDatetime}} </strong>
+                    <hr>
+                    <ul class="list-group">
+                        {{# each this.items }}
+                            <li class="list-group-item">
+                                <span class="badge">${{ this.itemTotal }}</span> {{ this.quantity }} | {{ this.bookTitle }} - $ {{this.bookPrice}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+
+                <div class="panel-footer">
+                    <strong>Order Total: ${{ this.totalPrice }}</strong>
+                </div>
+
+            </div>
+        {{/each}}
+    </div>
+</div>
